@@ -1,0 +1,55 @@
+<! DOCTYPE html>
+
+<html>
+
+	<head>
+		<title> Critical Information Infrastructure </title>
+		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+	</head>
+	
+	<body>
+		<div>
+			<h1>Do not press the refresh button</h1></br>
+			<h2>What do you think are the CIIs of Singapore?</h2>
+		</div>
+		<form action="{{url_for('main')}}" method='POST'>
+			<div>
+				<h3> Make a guess: </h3>
+				<input type='text' name='guess' placeholder='At least 4 characters'>
+			</div>
+			<div>
+				<input type='submit'>
+			</div>
+		</form>
+		<div>
+			<h3>{{message}}</h3>
+		</div>
+		<div>
+			{% if table %}
+			<table>
+				<tr>
+					{% for data in table[:3] %}
+						<td> <h4> {{data}} </h4> </td>
+					{% endfor %}
+				</tr>
+				{% if table|length > 3 %}
+					<tr>
+						{% for data in table[3:6] %}
+							<td> <h4> {{data}} </h4> </td>
+						{% endfor %}
+					</tr>
+				{% endif %}
+				{% if table|length > 6 %}
+					<tr>
+						{% for data in table[6:] %}
+							<td> <h4> {{data}} </h4> </td>
+						{% endfor %}
+					</tr>
+				{% endif %}
+			</table>
+			{%endif%}
+		</div>
+	</body>
+
+
+</html>
